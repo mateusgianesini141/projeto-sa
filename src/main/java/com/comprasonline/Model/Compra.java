@@ -3,6 +3,7 @@ package com.comprasonline.Model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Entity
 public class Compra {
 
@@ -12,9 +13,22 @@ public class Compra {
 
     private LocalDateTime dataCompra = LocalDateTime.now();
 
+    private Integer quantidade;
+
     private Double total;
 
-    // getters e setters
+    
+    private String Status;
+
+    @ManyToOne
+    private Usuario usuario;
+
+    @ManyToOne
+    private LojaOnline loja;
+
+    
+
+    // Getters e Setters
 
     public Long getId() {
         return id;
@@ -32,6 +46,14 @@ public class Compra {
         this.dataCompra = dataCompra;
     }
 
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
     public Double getTotal() {
         return total;
     }
@@ -39,4 +61,30 @@ public class Compra {
     public void setTotal(Double total) {
         this.total = total;
     }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        this.Status = status;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public LojaOnline getLoja() {
+        return loja;
+    }
+
+    public void setLoja(LojaOnline loja) {
+        this.loja = loja;
+    }
 }
+    
+ 

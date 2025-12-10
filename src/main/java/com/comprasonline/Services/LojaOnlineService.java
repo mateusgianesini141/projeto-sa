@@ -28,4 +28,16 @@ public class LojaOnlineService {
     public LojaOnline buscarPorId(Long id) {
         return repository.findById(id).orElse(null);
     }
+
+    public LojaOnline atualizar(Long id, LojaOnline lojaAtualizada) {
+        LojaOnline lojaExistente = repository.findById(id).orElse(null);
+        if (lojaExistente != null) {
+            lojaExistente.setNome(lojaAtualizada.getNome());
+            lojaExistente.setEndereco(lojaAtualizada.getEndereco());
+            // Atualize outros campos conforme necessário
+
+            return repository.save(lojaExistente);
+        }
+        return null;
+    }
 }
