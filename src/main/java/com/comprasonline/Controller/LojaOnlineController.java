@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.comprasonline.Model.LojaOnline;
 import com.comprasonline.Services.LojaOnlineService;
+import com.comprasonline.dto.LojaOnlineDTO;
 
 @RestController
 @RequestMapping("/lojas")
@@ -27,12 +28,12 @@ public class LojaOnlineController {
     }
 
     @GetMapping
-    public List<LojaOnline> listar() {
+    public List<LojaOnlineDTO> listar() {
         return lojaService.listar();
     }
 
     @PostMapping("/salvar")
-    public LojaOnline salvar(@RequestBody LojaOnline loja) {
+    public LojaOnlineDTO salvar(@RequestBody LojaOnline loja) {
         return lojaService.salvar(loja);
     }
 
@@ -43,7 +44,7 @@ public class LojaOnlineController {
     }
 
     @GetMapping("/{id}")
-    public LojaOnline buscar(@PathVariable Long id) {
+    public LojaOnlineDTO buscar(@PathVariable Long id) {
         return lojaService.buscarPorId(id);
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.comprasonline.Model.Usuario;
 import com.comprasonline.Services.UsuarioService;
+import com.comprasonline.dto.UsuarioDTO;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -25,7 +26,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> listar() {
+    public List<UsuarioDTO> listar() {
         return usuarioService.listar();
     }
 
@@ -41,7 +42,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public Usuario buscar(@PathVariable Long id) {
+    public UsuarioDTO buscar(@PathVariable Long id) {
         return usuarioService.buscarPorId(id);
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.comprasonline.Model.Compra;
 import com.comprasonline.Services.CompraService;
+import com.comprasonline.dto.CompraDTO;
 
 @RestController
 @RequestMapping("/compras")
@@ -24,17 +25,17 @@ public class CompraController {
     }
 
     @PostMapping("/salvar")
-    public Compra salvar(@RequestBody Compra compra) {
+    public CompraDTO salvar(@RequestBody CompraDTO compra) {
         return service.salvar(compra);
     }
 
     @GetMapping
-    public List<Compra> listar() {
+    public List<CompraDTO> listar() {
         return service.listar();
     }
 
     @GetMapping("/{id}")
-    public Compra buscar(@PathVariable Long id) {
+    public CompraDTO buscar(@PathVariable Long id) {
         return service.buscar(id);
     }
 

@@ -1,6 +1,8 @@
 package com.comprasonline.Model;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -84,6 +86,26 @@ public class Compra {
 
     public void setLoja(LojaOnline loja) {
         this.loja = loja;
+    }
+
+    public void setData(LocalDate data) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setData'");
+    }
+
+    public void setValor(Double valor) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setValor'");
+    }
+
+    public LocalDate getData() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getData'");
+    }
+
+    public Double getValor() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getValor'");
     }
 }
     
