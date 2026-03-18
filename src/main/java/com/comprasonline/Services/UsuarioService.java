@@ -3,13 +3,15 @@ package com.comprasonline.Services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import  org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
     
 import com.comprasonline.Exception.UsuarioException;
 import com.comprasonline.Model.Usuario;
 import com.comprasonline.Repository.UsuarioRepository;
-import com.comprasonline.dto.UsuarioDTO;
+
+import com.comprasonline.dto.UsuarioRequestDTO;
+import com.comprasonline.dto.UsuarioResponseDTO;
 
 @Service
 public class UsuarioService {
@@ -21,7 +23,7 @@ public class UsuarioService {
     }
 
     //  LISTAR
-    public List<UsuarioDTO> listar() {
+    public List<UsuarioResponseDTO> listar() {
         return repository.findAll()
                 .stream()
                 .map(this::toDTO)
@@ -29,15 +31,17 @@ public class UsuarioService {
     }
 
     //  SALVAR
-    public UsuarioDTO salvar(UsuarioDTO dto) {
+    public UsuarioResponseDTO salvar(UsuarioRequestDTO dto) {
         Usuario usuario = toEntity(dto);
         usuario = repository.save(usuario);
         return toDTO(usuario);
     }
 
-    private Usuario toEntity(UsuarioDTO dto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toEntity'");
+    private Usuario toEntity(UsuarioRequestDTO dto) {
+        Usuario usuario = new Usuario();
+        usuario.setNome(dto.getNome());
+        usuario.setEmail(dto.getEmail());
+        return usuario;
     }
 
     //  EXCLUIR
@@ -46,7 +50,7 @@ public class UsuarioService {
     }
 
     //  BUSCAR
-    public UsuarioDTO buscarPorId(Long id) {
+    public UsuarioResponseDTO buscarPorId(Long id) {
         Usuario usuario = repository.findById(id)
                 .orElseThrow(() -> new UsuarioException("Usuário não encontrado com id: " + id));
 
@@ -54,7 +58,7 @@ public class UsuarioService {
     }
 
     //  ATUALIZAR
-    public UsuarioDTO atualizar(Long id, Usuario atualizado) {
+    public UsuarioResponseDTO atualizar(Long id, Usuario atualizado) {
         Usuario usuarioExistente = repository.findById(id)
                 .orElseThrow(() -> new UsuarioException("Usuário não encontrado com id: " + id));
 
@@ -66,7 +70,7 @@ public class UsuarioService {
         return toDTO(usuarioExistente);
     }
 
-    private UsuarioDTO toDTO(Usuario usuarioExistente) {
+    private UsuarioResponseDTO toDTO(Usuario usuarioExistente) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'toDTO'");
     }
@@ -79,6 +83,11 @@ public class UsuarioService {
     public Usuario atualizar(long id, Usuario atualizado) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
+    }
+
+    public List<UsuarioRequestDTO> listarLojasOnline() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listarLojasOnline'");
     }
 
     

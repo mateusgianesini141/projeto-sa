@@ -2,23 +2,14 @@ package com.comprasonline.Controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-
-
-
-import com.comprasonline.Model.LojaOnline;
 import com.comprasonline.Services.LojaOnlineService;
-import com.comprasonline.dto.LojaOnlineDTO;
+import com.comprasonline.dto.LojaOnlineRequestDTO;
 
 @RestController
 @RequestMapping("/lojas")
+@CrossOrigin(origins = "*") // resolve problema de CORS
 public class LojaOnlineController {
 
     private final LojaOnlineService lojaService;
@@ -27,24 +18,29 @@ public class LojaOnlineController {
         this.lojaService = lojaService;
     }
 
+    // LISTAR TODAS
     @GetMapping
-    public List<LojaOnlineDTO> listar() {
-        return lojaService.listar();
+    public List<LojaOnlineRequestDTO> listar() {
+        return lojaService.listarLojaOnline();
     }
 
-    @PostMapping("/salvar")
-    public LojaOnlineDTO salvar(@RequestBody LojaOnline loja) {
-        return lojaService.salvar(loja);
+    // BUSCAR POR ID
+    @GetMapping("/{id}")
+    public LojaOnlineRequestDTO buscar(@PathVariable Long id) {
+        return lojaService.buscarLojaOnline(id);
     }
 
-    @DeleteMapping("/excluir/{id}")
+    // SALVAR
+    @PostMapping
+    public LojaOnlineRequestDTO salvar(@RequestBody LojaOnlineRequestDTO dto) {
+        return lojaService.salvarLojaOnline(dto);
+        
+    }
+
+    // DELETAR
+    @DeleteMapping("/{id}")
     public String excluir(@PathVariable Long id) {
         lojaService.excluirPorId(id);
         return "Loja excluída com sucesso!";
-    }
-
-    @GetMapping("/{id}")
-    public LojaOnlineDTO buscar(@PathVariable Long id) {
-        return lojaService.buscarPorId(id);
     }
 }

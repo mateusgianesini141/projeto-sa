@@ -12,7 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.comprasonline.Model.LojaOnline;
 import com.comprasonline.Model.Usuario;
 import com.comprasonline.Services.CompraService;
-import com.comprasonline.dto.CompraDTO;
+import com.comprasonline.dto.CompraRequestDTO;
+import com.comprasonline.dto.CompraResponseDTO;
 
 @SpringBootTest
 @Transactional
@@ -33,7 +34,7 @@ class CompraServiceIntegrationTest {
         loja.setNome("Amazon");
       
 
-        CompraDTO dto = new CompraDTO();
+        CompraRequestDTO dto = new CompraRequestDTO();
         dto.setData(LocalDate.now());
         dto.setValor(250.0);
         dto.setUsuarioId(usuario.getId());
@@ -43,7 +44,7 @@ class CompraServiceIntegrationTest {
     @Test
     @DisplayName("Deve listar compras")
     void listarCompras() {
-        List<CompraDTO> compras = Service.listar(); // again, lowercase
+        List<CompraResponseDTO> compras = Service.listarCompras(); // again, lowercase
        
     }
     
@@ -57,7 +58,7 @@ class CompraServiceIntegrationTest {
         loja.setNome("Mercado Livre");
        
 
-        CompraDTO dto = new CompraDTO();
+        CompraRequestDTO dto = new CompraRequestDTO();
         dto.setData(LocalDate.now());
         dto.setValor(500.0);
         dto.setUsuarioId(usuario.getId());

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.comprasonline.Model.Compra;
 import com.comprasonline.Services.CompraService;
-import com.comprasonline.dto.CompraDTO;
+import com.comprasonline.dto.CompraRequestDTO;
+import com.comprasonline.dto.CompraResponseDTO;
 
 @RestController
 @RequestMapping("/compras")
@@ -25,22 +25,22 @@ public class CompraController {
     }
 
     @PostMapping("/salvar")
-    public CompraDTO salvar(@RequestBody CompraDTO compra) {
-        return service.salvar(compra);
+    public CompraResponseDTO salvarCompra(@RequestBody CompraRequestDTO compraRequestDto) {
+        return service.salvarCompra(compraRequestDto);
     }
 
     @GetMapping
-    public List<CompraDTO> listar() {
-        return service.listar();
+    public List<CompraResponseDTO> listarCompras() {
+        return service.listarCompras();
     }
 
     @GetMapping("/{id}")
-    public CompraDTO buscar(@PathVariable Long id) {
-        return service.buscar(id);
+    public CompraResponseDTO buscarCompra(@PathVariable Long id) {
+        return service.buscarCompra(id);
     }
 
     @DeleteMapping("/excluir/{id}")
-    public void excluir(@PathVariable Long id) {
-        service.excluir(id);
+    public void excluirCompra(@PathVariable Long id) {
+        service.excluirCompra(id);
     }
 }

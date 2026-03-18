@@ -1,33 +1,23 @@
-package com.comprasonline.dto;   
+package com.comprasonline.dto;
 
-public class LojaOnlineDTO {
-
-    private Long id;
+public class LojaOnlineRequestDTO {
+   
     private String nome;
     private String email;
     private String cnpj;
     private String endereco;
 
-    public LojaOnlineDTO() {
+    public LojaOnlineRequestDTO() {
     }
 
-    public LojaOnlineDTO(Long id, String nome, String email, String cnpj, String endereco) {
-        this.id = id;
+    public LojaOnlineRequestDTO( String nome, String email, String cnpj, String endereco) {
+      
         this.nome = nome;
         this.email = email;
         this.cnpj = cnpj;
         this.endereco = endereco;
     }
 
-    // GETTERS E SETTERS
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -60,4 +50,5 @@ public class LojaOnlineDTO {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+    
 }

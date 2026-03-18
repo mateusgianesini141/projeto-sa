@@ -7,19 +7,22 @@ import org.springframework.stereotype.Service;
 
 import com.comprasonline.Model.LojaOnline;
 import com.comprasonline.Repository.LojaOnlineRepository;
-import com.comprasonline.dto.LojaOnlineDTO;
+
+import com.comprasonline.dto.LojaOnlineRequestDTO;
+import com.comprasonline.dto.LojaOnlineResponseDTO;
 
 @Service
 public class LojaOnlineService {
 
     private final LojaOnlineRepository repository;
+    public LojaOnlineRequestDTO buscarLojaOnline;
 
     public LojaOnlineService(LojaOnlineRepository repository) {
         this.repository = repository;
     }
 
     // ✅ LISTAR
-    public List<LojaOnlineDTO> listar() {
+    public List<LojaOnlineResponseDTO> listar() {
         return repository.findAll()
                 .stream()
                 .map(this::toDTO)
@@ -27,7 +30,7 @@ public class LojaOnlineService {
     }
 
     // ✅ SALVAR
-    public LojaOnlineDTO salvar(LojaOnline loja2) {
+    public LojaOnlineResponseDTO salvar(LojaOnline loja2) {
         LojaOnline loja = toEntity(loja2);
         loja = repository.save(loja);
         return toDTO(loja);
@@ -39,7 +42,7 @@ public class LojaOnlineService {
     }
 
     // ✅ BUSCAR
-    public LojaOnlineDTO buscarPorId(Long id) {
+    public LojaOnlineResponseDTO buscarPorId(Long id) {
         return repository.findById(id)
                 .map(this::toDTO)
                 .orElse(null);
@@ -51,7 +54,7 @@ public class LojaOnlineService {
     }
 
     // ✅ ATUALIZAR
-    public LojaOnlineDTO atualizar(Long id, LojaOnlineDTO dto) {
+    public LojaOnlineResponseDTO atualizar(Long id, LojaOnlineResponseDTO dto) {
         LojaOnline lojaExistente = repository.findById(id).orElse(null);
 
         if (lojaExistente != null) {
@@ -65,9 +68,24 @@ public class LojaOnlineService {
         return null;
     }
 
-    private LojaOnlineDTO toDTO(LojaOnline lojaExistente) {
+    private LojaOnlineResponseDTO toDTO(LojaOnline lojaExistente) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'toDTO'");
+    }
+
+    public List<LojaOnlineRequestDTO> listarLojaOnline() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listarLojaOnline'");
+    }
+
+    public LojaOnlineRequestDTO salvarLojaOnline(LojaOnlineRequestDTO dto) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'salvarLojaOnline'");
+    }
+
+    public LojaOnlineRequestDTO buscarLojaOnline(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarLojaOnline'");
     }
 
 }

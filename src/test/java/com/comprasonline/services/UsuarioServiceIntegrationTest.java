@@ -1,13 +1,10 @@
 package com.comprasonline.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.List;
-import java.util.Optional;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+
+
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,11 +12,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.comprasonline.Exception.UsuarioException;
+
 import com.comprasonline.Model.Usuario;
 import com.comprasonline.Repository.UsuarioRepository;
 import com.comprasonline.Services.UsuarioService;
-import com.comprasonline.dto.UsuarioDTO;
+
 
 
 import jakarta.transaction.Transactional;

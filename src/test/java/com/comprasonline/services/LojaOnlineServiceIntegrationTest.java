@@ -2,8 +2,10 @@ package com.comprasonline.services;
 
 import com.comprasonline.Model.LojaOnline;
 import com.comprasonline.Services.LojaOnlineService;
-import com.comprasonline.dto.LojaOnlineDTO;
 
+import com.comprasonline.dto.LojaOnlineResponseDTO;
+
+        
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +45,7 @@ class LojaOnlineServiceIntegrationTest {
         loja2.setNome("Mercado Livre");
         loja2.setUrl("www.mercadolivre.com");
         loja2.setCategoria("Marketplace");
-        List<LojaOnlineDTO> lojas = service.listar();
+        List<LojaOnlineResponseDTO> lojas = service.listar();
  }
 
     @Test
@@ -58,10 +60,11 @@ class LojaOnlineServiceIntegrationTest {
     @Test
     @DisplayName("Deve deletar loja com sucesso")
     void deveDeletarLojaComSucesso() {
-        LojaOnline loja = new LojaOnline();
+        LojaOnlineResponseDTO loja = new LojaOnlineResponseDTO();
         loja.setNome("Ebay");
-        loja.setUrl("www.ebay.com");
+        loja.setEmail("www.ebay.com");
         loja.setCategoria("Marketplace");
+            
     }
 }
        

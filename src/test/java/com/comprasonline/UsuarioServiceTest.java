@@ -2,10 +2,9 @@ package com.comprasonline;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
+
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.never;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -20,13 +19,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.comprasonline.Exception.UsuarioException;
+
 
     
 import com.comprasonline.Model.Usuario;
 import com.comprasonline.Repository.UsuarioRepository;
 import com.comprasonline.Services.UsuarioService;
-import com.comprasonline.dto.UsuarioDTO;
+import com.comprasonline.dto.UsuarioResponseDTO;
+
 
 public class UsuarioServiceTest {
 
@@ -51,7 +51,7 @@ public class UsuarioServiceTest {
 
         when(repository.findAll()).thenReturn(Arrays.asList(u1, u2));
 
-        List<UsuarioDTO> usuarios = service.listar();
+        List<UsuarioResponseDTO> usuarios = service.listar();
 
         assertEquals(2, usuarios.size());
         verify(repository, times(1)).findAll();
@@ -96,7 +96,7 @@ void testSalvarUsuario() {
 
         when(repository.findById(1L)).thenReturn(Optional.of(usuario));
 
-        UsuarioDTO encontrado = service.buscarPorId(1L);
+        UsuarioResponseDTO encontrado = service.buscarPorId(1L);
 
         assertNotNull(encontrado);
         assertEquals("Ana", encontrado.getNome());
@@ -121,7 +121,7 @@ void testSalvarUsuario() {
 void testAtualizarUsuario() {
 
     // Usuário existente no "banco"
-    Usuario existente = new Usuario();
+    Usuario  existente = new Usuario();
     existente.setId(1L);
     existente.setNome("Maria");
     existente.setEmail("maria@old");

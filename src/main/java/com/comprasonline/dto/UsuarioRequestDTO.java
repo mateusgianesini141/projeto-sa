@@ -1,32 +1,21 @@
-package com.comprasonline.dto;  
+package com.comprasonline.dto;
 
-public class UsuarioDTO {
-
-    private Long id;
+public class UsuarioRequestDTO {
+   
     private String nome;
     private String email;
     private String senha;
     private String cpf;
 
-    public UsuarioDTO() {
+    public UsuarioRequestDTO() {
     }
 
-    public UsuarioDTO(Long id, String nome, String email, String senha, String cpf) {
-        this.id = id;
+    public UsuarioRequestDTO(String nome, String email, String senha, String cpf) {
+       
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.cpf = cpf;
-    }
-
-    // GETTERS E SETTERS
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -60,5 +49,5 @@ public class UsuarioDTO {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-                
+    
 }
