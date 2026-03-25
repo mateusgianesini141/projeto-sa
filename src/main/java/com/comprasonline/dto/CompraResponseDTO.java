@@ -4,17 +4,16 @@ import java.time.LocalDate;
 
 public class CompraResponseDTO {
     
-    private Long id;
-    private LocalDate data;
-    private Double valor;
+     private Long id;
     private Long usuarioId;
     private Long lojaId;
-    
+    private Double valor;
+
     public CompraResponseDTO() {
     }
 
     public CompraResponseDTO(LocalDate data, Double valor, Long usuarioId, Long lojaId) {
-        this.data = data;
+      
         this.valor = valor;
         this.usuarioId = usuarioId;
         this.lojaId = lojaId;
@@ -24,13 +23,7 @@ public class CompraResponseDTO {
         return id;
     }
 
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
+    
 
     public Double getValor() {
         return valor;

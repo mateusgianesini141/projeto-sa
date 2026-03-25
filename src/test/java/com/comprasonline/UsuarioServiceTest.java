@@ -1,10 +1,9 @@
 package com.comprasonline;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import static org.mockito.Mockito.doNothing;
-
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -19,13 +18,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-
-
-    
 import com.comprasonline.Model.Usuario;
 import com.comprasonline.Repository.UsuarioRepository;
 import com.comprasonline.Services.UsuarioService;
-import com.comprasonline.dto.UsuarioResponseDTO;
 
 
 public class UsuarioServiceTest {
@@ -46,12 +41,12 @@ public class UsuarioServiceTest {
     // -------------------------
     @Test
     void testListarUsuarios() {
-        Usuario u1 = new Usuario("Mateus", "mateus@email");
-        Usuario u2 = new Usuario("João", "joao@email");
+        Usuario u1 = new Usuario();
+        Usuario u2 = new Usuario();
 
         when(repository.findAll()).thenReturn(Arrays.asList(u1, u2));
 
-        List<UsuarioResponseDTO> usuarios = service.listar();
+        List<Usuario> usuarios = service.listar();
 
         assertEquals(2, usuarios.size());
         verify(repository, times(1)).findAll();
@@ -76,11 +71,12 @@ void testSalvarUsuario() {
 
     when(repository.save(usuario)).thenReturn(usuarioSalvo);
 
-    Usuario salvo = service.salvar(usuario);
+   
 
-    assertNotNull(salvo.getId());          
-    assertEquals("Carlos", salvo.getNome());
-    assertEquals("carlos@email", salvo.getEmail());
+    Object salvo = null;
+    assertNotNull(salvo.getClass());          
+    assertEquals("Carlos", ((Usuario) salvo).getNome());
+    assertEquals("carlos@email", ((Usuario) salvo).getEmail());
 
     verify(repository, times(1)).save(usuario);
 }
@@ -91,12 +87,12 @@ void testSalvarUsuario() {
     // -------------------------
     @Test
     void testBuscarPorId() {
-        Usuario usuario = new Usuario("Ana", "ana@email");
+        Usuario usuario = new Usuario();
 
 
         when(repository.findById(1L)).thenReturn(Optional.of(usuario));
 
-        UsuarioResponseDTO encontrado = service.buscarPorId(1L);
+        Usuario encontrado = service.buscarPorId(1L);
 
         assertNotNull(encontrado);
         assertEquals("Ana", encontrado.getNome());
@@ -135,7 +131,7 @@ void testAtualizarUsuario() {
 
         when(repository.findById(1L)).thenReturn(Optional.empty());
 
-        Usuario novo = new Usuario(null, "Teste");
+        Usuario novo = new Usuario();
 
     
 

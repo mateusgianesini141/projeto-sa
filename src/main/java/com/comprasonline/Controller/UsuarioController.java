@@ -4,37 +4,29 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
+import com.comprasonline.Model.Usuario;
 import com.comprasonline.Services.UsuarioService;
-import com.comprasonline.dto.UsuarioRequestDTO;
-import com.comprasonline.dto.UsuarioResponseDTO;
 
 @RestController
 @RequestMapping("/usuarios")
 @CrossOrigin(origins = "*")
 public class UsuarioController {
 
-    private final UsuarioService usuarioService;
+    private final UsuarioService service;
 
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    public UsuarioController(UsuarioService service) {
+        this.service = service;
     }
 
-    // LISTAR USUÁRIOS
     @GetMapping
-    public List<UsuarioResponseDTO> listar() {
-        return usuarioService.listar();
+    public List<Usuario> listar() {
+        return service.listar();
     }
 
-    // SALVAR USUÁRIO
     @PostMapping
-    public UsuarioResponseDTO salvar(@RequestBody UsuarioRequestDTO dto) {
-        return usuarioService.salvar(dto);
-    }
-
-    // EXCLUIR USUÁRIO
-    @DeleteMapping("/{id}")
-    public String excluir(@PathVariable Long id) {
-        usuarioService.excluir(id);
-        return "Usuário excluído com sucesso!";
+    public Usuario salvar(@RequestBody Usuario usuario) {
+        return service.salvar(usuario);
     }
 }
+
+

@@ -1,6 +1,7 @@
 package com.comprasonline.Services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -23,29 +24,34 @@ public class LojaOnlineService {
 
     // ✅ LISTAR
     public List<LojaOnlineResponseDTO> listar() {
-        return repository.findAll()
-                .stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
+        return (List<LojaOnlineResponseDTO>) ((Object) repository.findAll());
+                
+               
     }
 
     // ✅ SALVAR
-    public LojaOnlineResponseDTO salvar(LojaOnline loja2) {
-        LojaOnline loja = toEntity(loja2);
+    public LojaOnlineResponseDTO salvar1(LojaOnline dto) {
+        LojaOnline loja = toEntity(dto);
         loja = repository.save(loja);
         return toDTO(loja);
     }
 
-    private LojaOnline toEntity(LojaOnline loja2) {
+
+    private LojaOnlineResponseDTO toDTO(LojaOnline loja) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toDTO'");
+    }
+
+    private LojaOnline toEntity(LojaOnline dto) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'toEntity'");
     }
 
     // ✅ BUSCAR
-    public LojaOnlineResponseDTO buscarPorId(Long id) {
-        return repository.findById(id)
-                .map(this::toDTO)
-                .orElse(null);
+    public Optional<LojaOnline> buscarPorId(Long id) {
+        return repository.findById(id);
+               
+                
     }
 
     // ✅ EXCLUIR
@@ -68,24 +74,19 @@ public class LojaOnlineService {
         return null;
     }
 
-    private LojaOnlineResponseDTO toDTO(LojaOnline lojaExistente) {
+    public Object salvar11(LojaOnline loja1) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toDTO'");
+        throw new UnsupportedOperationException("Unimplemented method 'salvar'");
     }
 
-    public List<LojaOnlineRequestDTO> listarLojaOnline() {
+    public void salvar1(LojaOnlineRequestDTO dto) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarLojaOnline'");
+        throw new UnsupportedOperationException("Unimplemented method 'salvar'");
     }
 
-    public LojaOnlineRequestDTO salvarLojaOnline(LojaOnlineRequestDTO dto) {
+    public <T extends Object> T salvar(LojaOnlineRequestDTO dto) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'salvarLojaOnline'");
-    }
-
-    public LojaOnlineRequestDTO buscarLojaOnline(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarLojaOnline'");
+        throw new UnsupportedOperationException("Unimplemented method 'salvar'");
     }
 
 }

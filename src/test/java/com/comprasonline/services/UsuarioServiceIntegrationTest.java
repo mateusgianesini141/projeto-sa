@@ -1,10 +1,12 @@
 package com.comprasonline.services;
 
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
-
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,11 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
 import com.comprasonline.Model.Usuario;
 import com.comprasonline.Repository.UsuarioRepository;
 import com.comprasonline.Services.UsuarioService;
-
 
 
 import jakarta.transaction.Transactional;
@@ -33,7 +33,7 @@ class UsuarioServiceIntegrationTest {
 
     private Usuario usuario;
 
-     @BeforeEach
+    @BeforeEach
     void setup() {
         usuarioRepository.deleteAll();
 
@@ -43,38 +43,57 @@ class UsuarioServiceIntegrationTest {
 
         usuario = usuarioRepository.save(usuario);
     }
+
     @Test
-@DisplayName("Deve salvar um usuário com sucesso")
-void deveSalvarUsuarioComSucesso() {
+    @DisplayName("Deve salvar um usuário com sucesso")
+    void deveSalvarUsuarioComSucesso() {
 
-    // Arrange
-    Usuario novo = new Usuario();
-    novo.setNome("João");
-    novo.setEmail("joao@email.com");
-}
+        Usuario novo = new Usuario();
+        novo.setNome("João");
+        novo.setEmail("joao@email.com");
 
+        Usuario salvo = usuarioService.salvar(novo);
 
-      @Test
+        assertNotNull(salvo);
+        assertNotNull(salvo.getId());
+        assertEquals("João", salvo.getNome());
+    }
+
+    @Test
     @DisplayName("Deve listar usuários com sucesso")
     void deveListarUsuariosComSucesso() {
 
-       }
-      @Test
+        List<Usuario> usuarios = usuarioService.listar();
+
+        assertNotNull(usuarios);
+        assertTrue(usuarios.size() >= 1);
+    }
+
+    @Test
     @DisplayName("Deve buscar usuário por id com sucesso")
     void deveBuscarUsuarioPorIdComSucesso() {
-     Object encontrado = null;
-        
-       
+
+        Usuario encontrado = usuarioService.buscarPorId(usuario.getId());
+
+        assertNotNull(encontrado);
+        assertEquals(usuario.getId(), encontrado.getId());
     }
-  @Test
+
+    @Test
     @DisplayName("Deve atualizar usuário com sucesso")
     void deveAtualizarUsuarioComSucesso() {
 
         Usuario atualizado = new Usuario();
         atualizado.setNome("Mateus Silva");
         atualizado.setEmail("mateus.silva@email.com");
-}
-      @Test
+
+        Usuario resultado = usuarioService.atualizar(usuario.getId(), atualizado);
+
+        assertNotNull(resultado);
+        assertEquals("Mateus Silva", resultado.getNome());
+    }
+
+    @Test
     @DisplayName("Deve lançar exceção ao atualizar usuário inexistente")
     void deveLancarExcecaoAoAtualizarUsuarioInexistente() {
 
@@ -82,8 +101,12 @@ void deveSalvarUsuarioComSucesso() {
         atualizado.setNome("Teste");
         atualizado.setEmail("teste@email.com");
 
-        }
-       @Test
+        assertThrows(RuntimeException.class, () -> {
+            usuarioService.atualizar(999L, atualizado);
+        });
+    }
+
+    @Test
     @DisplayName("Deve excluir usuário com sucesso")
     void deveExcluirUsuarioComSucesso() {
 
@@ -94,4 +117,3 @@ void deveSalvarUsuarioComSucesso() {
         assertNull(resultado);
     }
 }
-

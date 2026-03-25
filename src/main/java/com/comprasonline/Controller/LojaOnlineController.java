@@ -1,15 +1,19 @@
 package com.comprasonline.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.comprasonline.Model.LojaOnline;
 import com.comprasonline.Services.LojaOnlineService;
 import com.comprasonline.dto.LojaOnlineRequestDTO;
+import com.comprasonline.dto.LojaOnlineResponseDTO;
 
 @RestController
 @RequestMapping("/lojas")
-@CrossOrigin(origins = "*") // resolve problema de CORS
+@CrossOrigin(origins = "*")
 public class LojaOnlineController {
 
     private final LojaOnlineService lojaService;
@@ -20,27 +24,26 @@ public class LojaOnlineController {
 
     // LISTAR TODAS
     @GetMapping
-    public List<LojaOnlineRequestDTO> listar() {
-        return lojaService.listarLojaOnline();
+    public ResponseEntity<List<LojaOnlineResponseDTO>> listar() {
+        return ResponseEntity.ok(lojaService.listar());
     }
 
     // BUSCAR POR ID
     @GetMapping("/{id}")
-    public LojaOnlineRequestDTO buscar(@PathVariable Long id) {
-        return lojaService.buscarLojaOnline(id);
+    public ResponseEntity<Optional<LojaOnline>> buscar(@PathVariable Long id) {
+        return ResponseEntity.ok(lojaService.buscarPorId(id));
     }
 
-    // SALVAR
+    // SALVAR (SEM ID)
     @PostMapping
-    public LojaOnlineRequestDTO salvar(@RequestBody LojaOnlineRequestDTO dto) {
-        return lojaService.salvarLojaOnline(dto);
-        
+    public ResponseEntity<Object> salvar(@RequestBody LojaOnlineRequestDTO dto) {
+        return (ResponseEntity<Object>) ResponseEntity.ok();
     }
 
     // DELETAR
     @DeleteMapping("/{id}")
-    public String excluir(@PathVariable Long id) {
+    public ResponseEntity<String> excluir(@PathVariable Long id) {
         lojaService.excluirPorId(id);
-        return "Loja excluída com sucesso!";
+        return ResponseEntity.ok("Loja excluída com sucesso!");
     }
 }

@@ -1,10 +1,8 @@
 package com.comprasonline.Model;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
 
 @Entity
 public class Compra {
@@ -13,19 +11,17 @@ public class Compra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime dataCompra = LocalDateTime.now();
-
-    private Integer quantidade;
-
-    private Double total;
-
+    private String produto;
+    private Double valor;
+    private LocalDate data;
     
-    private String Status;
 
     @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @ManyToOne
+    @JoinColumn(name = "loja_id")
     private LojaOnline loja;
 
     
@@ -40,37 +36,7 @@ public class Compra {
         this.id = id;
     }
 
-    public LocalDateTime getDataCompra() {
-        return dataCompra;
-    }
 
-    public void setDataCompra(LocalDateTime dataCompra) {
-        this.dataCompra = dataCompra;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public String getStatus() {
-        return Status;
-    }
-
-    public void setStatus(String status) {
-        this.Status = status;
-    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -88,24 +54,28 @@ public class Compra {
         this.loja = loja;
     }
 
-    public void setData(LocalDate data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setData'");
+    public String getProduto() {
+        return produto;
     }
 
-    public void setValor(Double valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setValor'");
-    }
-
-    public LocalDate getData() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getData'");
+    public void setProduto(String produto) {
+        this.produto = produto;
     }
 
     public Double getValor() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getValor'");
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 }
     

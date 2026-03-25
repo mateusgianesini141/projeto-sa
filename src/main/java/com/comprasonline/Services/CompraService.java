@@ -44,7 +44,7 @@ public class CompraService {
 
     private Compra toEntity(CompraRequestDTO dto) {
         Compra compra = new Compra();
-        compra.setData(dto.getData());
+      
         compra.setValor(dto.getValor());
         return compra;
     }
@@ -56,5 +56,15 @@ public class CompraService {
                 compra.getUsuario() != null ? compra.getUsuario().getId() : null,
                 compra.getLoja() != null ? compra.getLoja().getId() : null
         );
+    }
+
+    public Object listar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listar'");
+    }
+
+    public CompraResponseDTO buscarPorId(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
     }
 }

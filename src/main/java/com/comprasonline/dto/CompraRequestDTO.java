@@ -4,27 +4,24 @@ import java.time.LocalDate;
 
 public class CompraRequestDTO {
 
-    private LocalDate data;
-    private Double valor;
+ 
     private Long usuarioId;
     private Long lojaId;
+    private Double valor;
+   
 
     public CompraRequestDTO() {
     }
 
     public CompraRequestDTO(LocalDate data, Double valor, Long usuarioId, Long lojaId) {
-        this.data = data;
+       
         this.valor = valor;
         this.usuarioId = usuarioId;
         this.lojaId = lojaId;
     }
 
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
+    public Long getUsuarioId1() {
+        return usuarioId;
     }
 
     public Double getValor() {
@@ -49,6 +46,11 @@ public class CompraRequestDTO {
 
     public void setLojaId(Long lojaId) {
         this.lojaId = lojaId;
+    }
+
+    public void setData(LocalDate now) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setData'");
     }
 
     

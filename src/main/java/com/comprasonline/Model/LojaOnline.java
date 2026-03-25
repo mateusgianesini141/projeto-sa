@@ -1,30 +1,30 @@
 package com.comprasonline.Model;
 
-import jakarta.persistence.*;
+
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
-@Table(name = "loja_online")
 public class LojaOnline {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String nome;
+
+    @OneToMany(mappedBy = "loja")
+    private List<Compra> compras;
 
     private String url;
 
     private String categoria;
 
-    public LojaOnline() {
-    }
-
-    public LojaOnline(String nome, String url, String categoria) {
-        this.nome = nome;
-        this.url = url;
-        this.categoria = categoria;
-    }
 
     public Long getId() {
         return id;
@@ -43,11 +43,11 @@ public class LojaOnline {
     }
 
     public String getUrl() {
-        return url;
+        return categoria;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.categoria = url;
     }
 
     public String getCategoria() {
@@ -58,14 +58,11 @@ public class LojaOnline {
         this.categoria = categoria;
     }
 
-    public Object getEndereco() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEndereco'");
-    }
-
-    public void setEndereco(Object endereco) {
+    public void setEndereco(String endereco) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setEndereco'");
     }
+
+   
                 
 }
